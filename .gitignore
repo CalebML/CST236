@@ -1,2 +1,5 @@
 *.exe
 *.pyc
+*.html
+/htmlcov
+/.coverage

@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title>Welcome to CST 236 Lab 1</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7614 2013-02-21 15:55:51Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="welcome-to-cst-236-lab-1">
+<h1 class="title">Welcome to CST 236 Lab 1</h1>
+
+<p><strong>If you have not already done so. Ensure you have completed the instructions
+on blackboard.</strong></p>
+<p>The goal of this lab is to familiarize yourselves with GIT, Python, RST Files, Sphinx and
+DocTests. I have divided the lab up into the following categories:</p>
+<ol class="arabic simple">
+<li>Getting Python Setup</li>
+<li>Coverting RST (this file)</li>
+<li>Gitting to know Git</li>
+<li>Getting to know nose2</li>
+<li>Getting to know sphinx</li>
+<li>Continous Integration</li>
+<li>Lab write-up</li>
+</ol>
+<div class="section" id="getting-python-setup">
+<h1>Getting Python Setup</h1>
+<ol class="arabic">
+<li><p class="first">If you don't already have python 2.7.8 download and install it now</p>
+</li>
+<li><p class="first">Ensure &quot;C:python27;C:python27scripts;C:python27libsite-packages&quot; is in your env path variable</p>
+</li>
+<li><p class="first">Open a command prompt to the root of the CST236 repo and run &quot;python install get-pip.py&quot;</p>
+</li>
+<li><p class="first">pip (python installation package) manages extra modules not included in standard python</p>
+</li>
+<li><p class="first">Run &quot;pip install -r requirements.txt&quot;.</p>
+<blockquote>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p>Important</p>
+<p class="last">This will install all standard modules used for this class. If your lab assignment or
+project requires additional modules you must create a requirements.txt file in the root
+of your repo and check it in</p>
+</div>
+</blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="converting-rst">
+<h1>Converting RST</h1>
+<p>Isn't this document format ugly? ReStructured text (RST) is a very powerful &quot;what you see is what you get&quot; markup format for creating documents.
+I'm not sure about you but if you run &quot;rst2html.py Lab1.rst Lab1.html&quot; It looks a whole lot better. Granted it would look better with CSS but
+it does accomplish the goal of making it easier to read.</p>
+<p>ReStructured Test is especially useful when working with a GIT repo that works better with plain text files than complex binary (.doc/.chm) files.</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Each lab for this class will end with a set of write-up questions that must be completed to get full credit for the lab. The write-up must
+be submitted as part of the lab git repo and be in the form of RST capable of being converted using rst2html.</p>
+</div>
+<p>For more information about ReStructured Text see <a class="reference external" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">RST</a>.</p>
+</div>
+<div class="section" id="gitting-to-know-git">
+<h1>GITting to know GIT</h1>
+<p>This lab will not cover every detail of how to use GIT. Instead I have provided a
+brief overview on GIT. The expectation is that you research the additional details
+about GIT using online resources such as Atlassian's <a class="reference external" href="https://www.atlassian.com/git/tutorials/">Tutorial</a>.</p>
+<div class="section" id="creating-your-own-repo">
+<h2>Creating your own Repo</h2>
+<p>If you do not already have a GIT server setup you will now want to
+go to github and register for an account and follow github's instructions
+for creating a GIT repo.</p>
+<p>The URL generated from this process is what you will want to clone locally
+and send to me at the end of the lab.</p>
+<p>Each lab should be committed as a branch to allow each referencing other
+labs throughout this course. The master branch should be used to contain
+a project template (one is provided under origin/lab1_template on the CST236
+repo). As the class progresses it's highly recommended that you rebase
+changes onto master that you feel would be useful in future labs.</p>
+<p>For example:</p>
+<pre class="code literal-block">
+Master branch             Branch
+|
+O------------------------ Lab1
+|________________________ Lab2
+|
+O
+|
+O
+|
+O
+|
+O------------------------- Lab3
+</pre>
+<p>In the above example lab1 and two are both branched off the same version of master
+because there wasn't any new reusable code added on master. But after Lab2 you found
+several plugins and such that you wanted to use on future labs so you added it to master
+and branched Lab3 off the new head of master.</p>
+</div>
+<div class="section" id="your-first-commit">
+<h2>Your first Commit</h2>
+<p>No matter the repo no matter what the first commit to the repo should always
+be to the .gitignore file. The reasoning for this is to ensure binary files
+or other files are not checked in and essentially ruin the repo.</p>
+<p>Often when working with GIT you will hear a lot of complaints about
+binary files in a GIT repo. For the most binary files are only acceptable
+if they are only going to be added and never or rarely modified. The issue
+in GIT with binary files is that git does not store files it stores deltas.
+This means on clones GIT downloads the complete list of changes (every commit
+on every branch that has ever been made to a repo).</p>
+<p>At first this seems less like a feature and more like a bug of GIT. But
+statistically on text files like source code this is actually a much more
+efficient way of storing files since statically most changes won't be total
+re-writes of the files. Additionally this provides the user with the ability
+to review the entire list of changes after a clone without needing to interact
+with a server. In theory this would mean I can clone each of your repos for a
+given lab board a plane with no wifi and grade each of your assignments by
+the time I land.</p>
+<p>The downfall to this model is binary files such as exes and bitmaps. Every time
+an exe is complied a high percentage of the exe is changed. This means with each
+commit containing a binary change the other collaborates have much more data to
+fetch.</p>
+<p>Now lets get ignoring the binary files out of the way.</p>
+<ol class="arabic simple">
+<li>Clone your repo locally</li>
+<li>Open a git bash to the root of your repo</li>
+<li>Execute &quot;touch .gitignore&quot;</li>
+<li>Add &quot;<em>.exe&quot; and &quot;</em>.pyc&quot; to the .gitignore file</li>
+<li>Add the file to the repo by executing &quot;git add .gitignore&quot;</li>
+<li>Run &quot;git commit -a -m &quot;Added .gitignore file&quot;</li>
+<li>Run &quot;git push&quot;</li>
+</ol>
+<p>You have now made your first commit and pushed to the server with a message of &quot;Added .gitignore file&quot;</p>
+<p>The following set of sections highlight the important git commands. there are many other commands available
+and each command has many different parameters. It's highly recommended you spend time with each to
+better understand GIT.</p>
+</div>
+<div class="section" id="switching-to-a-new-branch">
+<h2>Switching to a new branch</h2>
+<p>GIT branches are useful for collaboration reasons. Branches allow individual team members to
+commit code to their personal branch to share with others without affecting the main (master)
+branch.</p>
+<p>Branching is also useful because they allow a team member to make as many commits
+as they want and squash them before it's integrated into master. Squashing makes it so
+that only one commit message shows up and avoids flooding other team members logs with
+too many unnecessary commits.</p>
+<p>One final reason for using branches in GIT is that a project can be setup to build branches
+whenever a new commit is made. This allows developers and team members to know the build/test
+status for each branch (useful for organizations that use integration branches)</p>
+<p>A git branch can be created using &quot;git checkout -b [name_of_your_new_branch]&quot;</p>
+<p>To push a new branch use &quot;git push origin [name_of_your_new_branch]&quot;</p>
+<p>Use &quot;git branch&quot; to view a listing of all local branches. &quot;git branch -a&quot; to view all local and remote.
+The branch indicated with &quot;*&quot; is your current branch.</p>
+<p>Switch to the &quot;Lab1_example&quot; branch on the CST236 repo</p>
+<p>The now checked out files contain the testing template that will be used for the remaining labs.
+Copy these changes and check them into the master branch on your lab repo. Next create  branch called &quot;lab1&quot;
+push it to the server. This is where the remaining changes for this lab should be pushed(Unless you find
+something that might be useful to have available on all labs)</p>
+</div>
+<div class="section" id="rebasing-a-branch">
+<h2>Rebasing a Branch</h2>
+<p>Rebasing a branch is useful when you have changes on a branch that you want on the master branch.</p>
+<p>This can be accomplished using the &quot;git rebase&quot; command</p>
+<p>Cherry picking allows grabbing a single commit from a branch and adding it to the current branch.</p>
+<p>This can be accomplished using the &quot;git cherry-pick&quot; command</p>
+</div>
+<div class="section" id="viewing-the-log">
+<h2>Viewing the Log</h2>
+<p>Using the &quot;git log&quot; command you are able to see many details and commit history for the
+current branch. There are many parameters to git log. Review these parameters and try
+out a few to better understand git log</p>
+</div>
+<div class="section" id="diffing-two-revisions">
+<h2>Diffing two revisions</h2>
+<p>Using the &quot;git diff&quot; command you can diff two commits or even the file itself that was changed
+Review the parameters and try out a few to better understand git diff.</p>
+</div>
+<div class="section" id="squashing-two-commits">
+<h2>Squashing two commits</h2>
+<p>One of the nice features of GIT is you can make many commits locally without pushing and they will provide you
+with restore points as you develop your feature locally. When it's time to push to an integration branch or
+master you will likely want to squash those changes to have all your changes in a single commit. The advantage
+of this is you won't flood your fellow engineer's git log.</p>
+<p>Research the different ways to squash git commits</p>
+</div>
+<div class="section" id="reverting-changes-to-the-last-commit">
+<h2>Reverting Changes to the last Commit</h2>
+<p>Using the &quot;git revert&quot; you can undo changes or cleanup unneed files.</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p>important</p>
+<p class="last">Careful once something is reverted it is gone forever</p>
+</div>
+<p>Review the parameters and try out a few to better understand git revert</p>
+</div>
+</div>
+<div class="section" id="getting-to-nose-nose2">
+<h1>Getting to nose nose2</h1>
+<p>Nose2 is one of many various unit test tools that are available for python.
+The majority of these testing tools use test framework called unittest or pyunit (if doing a
+google search).</p>
+<p>The difference in the case of Nose2 and pyunit here is that pyunit is what your test is
+written as (in a moment we will see that test classes all inherit from the pyunit modules).
+Tools like Nose2 automates finding and running multiple pyunit tests.</p>
+<p>What nose2 provides us:</p>
+<ul class="simple">
+<li>Discovery of and execution of pyunit tests</li>
+<li>Converts results into multiple formats (html, junit, etc)</li>
+<li>Automates running of coverage</li>
+<li>Can be setup to run tests in parallel</li>
+<li>Expandable to allow you to write your own plugins ( <a class="reference external" href="http://nose2.readthedocs.org/">http://nose2.readthedocs.org/</a> )</li>
+</ul>
+<p>In my cst236 repo that I have provided for you on the Lab1 branch I have provided a sample
+setup and test for you to look at and better understand nose.</p>
+<p>In the root of the repo you will see a file named nose2.cfg. Nose2.cfg tells nose how you
+would like nose2 to be executed. It also provides ways to add additional plugins and configure
+those plugins. The contents of the file are as such:</p>
+<pre class="code literal-block">
+[unittest]                          # All settings after this is for unittest (main plugin)
+start-dir = .                       # Where to execute the tests from
+code-directories = source           # The location where the code to be tested is located
+test-file-pattern = *_test.py       # Defines the pattern to look for when discovering tests (This means every test file must end with _test.py
+plugins = tests.plugins.coverage    # Defines plugins we wish to utilize (in this case we are using a coverage plugin from tests/plugins/coverage
+exclude-plugins = nose2.plugins.coverage
+                                    # Defines plugins we wish to disable and not use. In this case we are not using nose2 coverage and using our own plugin instead.
+
+[output-buffer]                     # Output buffer is a useful plugin that can be used to capture output from tests
+always-on = True
+stderr = True
+stdout = True
+
+[log-capture]                       # Log capture is used to capture logging output from tests
+always-on = True
+clear-handlers = True
+log-level = DEBUG
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the example above each line in the nose2.cfg file must not be indented and must
+be at column 0 of their respective lines.</p>
+</div>
+<p>Now lets take a look at an actual test procedures. The sample test procedure ('source1_test.py')
+is located in the tests folder. The term test procedure is used to refer to a logical
+grouping of test cases. With python this is typically a .py file (like the example source1_test).
+Many times projects prefer test procedures to be a one to one relationship with the source code
+module that they test. So in this case source1_test tests source1.py in the source folder.</p>
+<p>If you open the source1_test file you will first notice that we import the function we plan on testing.
+This import can be either a function import, module import, or class import. No matter what
+you must import the code you plan on testing. The next thing you will see is the line importing
+TestCase.</p>
+<p>TestCases are a grouping of steps that verify that the code when given some input will provide the
+expected output. In most cases the TestCases should test a single function (regardless of whether
+that function is in a class).</p>
+<p>To implement a test case you want to first name it something that indicates what is being tested.
+in the sample I provided the TestCase &quot;TestGetTriangleType&quot; is used to verify the output from
+the function get_triangle_type. TestGetTriangleType inherits from the TestCase so that pyunit
+registers this class as a TestCase and will execute it. If our class was not a child or
+descendent of TestCase then the tests inside the class would not run.</p>
+<p>Next up we have the test_step itself. We see 'test_get_triangle_equilateral_all_int' when writing unit tests
+we want to make the code as verbose as to what is going on as possible but at the same time we want to avoid
+lengthy commenting as it creates clutter and maintenance issues. This is why the test step name is so lengthy
+because the test step name indicates exactly what is being tested in that step. You will notice that
+the function begins with '<a href="#id1"><span class="problematic" id="id2">test_</span></a>' this is another requirement of pyunit. If a function inside of
+a TestCase does not begin with '<a href="#id3"><span class="problematic" id="id4">test_</span></a>' then it will not be called as a test step. This does
+not mean you can't add other functions. In actuality I and other testers would encourage use
+of helper functions or class or modules. It's just important to note that they will note be called
+unless one of your test steps call them.</p>
+<p>Inside of the two test steps provided you will see two lines. The first is calling 'get_triange_type'
+the second is verifying the return from the function. Each test step allows you to add as many
+setup up, function calls, etc that you want. Likewise you can compare as many values as you wish.
+From a maintenance standpoint it's much better if each of your test steps are singular. This means
+that each test step should be only as long as it needs to be to verify the functionality it intends.
+In the example provided you can tell by the step name that we are verifying that get_triangle_type
+will return equilateral when equilateral lengths are provided in the form of floats.</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the example I have split this into two function because we are clearly testing two
+separate program paths and functionality. By splitting this I make it easier for
+future test writers to understand what I was testing.</p>
+</div>
+<p>There are hundreds of different comparison functions available through <a class="reference external" href="https://docs.python.org/2/library/unittest.html#unittest.TestCase.assertEqual">pyunit</a></p>
+<p>If there is a comparison that isn't natively covered in pyunit that you plan on using
+often you always have the option to add it as a member function to your local test case
+class. In my job I've often found it helpful to create base tests that I can add common
+functionality to so that all my tests can reuse my custom comparisons. For example you
+could create something like:
+unittest.TestCase =&gt; ProjectBaseTest =&gt; SpecificTestCaseClass.</p>
+<p>Finally, there are a number of functions in TestCase that can be overwritten to aid in testing.
+The major functions most commonly overwritten is:</p>
+<ul class="simple">
+<li>setUp: called before each test function. Useful when there is some operation that needs to occur before each test</li>
+<li>tearDown: called after each test function executes. Useful if there is some cleanup that needs to occur after each function</li>
+</ul>
+<div class="section" id="running-your-first-nose2-test">
+<h2>Running your first Nose2 Test</h2>
+<p>To ensure proper setup I have included a test case that you may use as a guide
+for the remaining tests.</p>
+<p>To execute open a command prompt and execute the following:</p>
+<pre class="code literal-block">
+nose2
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Oh no it looks like Gaben broke the tests. Your job is now to fix the broken tests.</p>
+</div>
+<p>Using nose2 you are able to execute a single test using syntax such as the following:</p>
+<pre class="code literal-block">
+&gt;nose2 -s . tests.source1_test.TestGetTriangleType.test_get_triangle_scalene_all_int
+</pre>
+</div>
+<div class="section" id="creating-your-first-test">
+<h2>Creating your first test</h2>
+<p>Now that you have fixed the broken test lets see what the coverage looks like. Execute the following commands:</p>
+<pre class="code literal-block">
+nose2 --with-coverage --coverage-report html
+</pre>
+<ul class="simple">
+<li>This will generate an html report for the coverage results in htmlcov/index.html.</li>
+<li>If you look at this file the coverage is currently including the tests in the results.</li>
+</ul>
+<ol class="arabic">
+<li><p class="first">Lets automatically run for coverage by adding the following to nose2.cfg (without spaces or tabs before the lines):</p>
+<blockquote>
+<pre class="code literal-block">
+[coverage]
+coverage = .
+always-on = True
+coverage-report = html
+</pre>
+</blockquote>
+</li>
+<li><p class="first">Change directory being used to gather coverage by modifying &quot;coverage&quot; attribute above to point to the source folder</p>
+</li>
+<li><p class="first">Now rerun nose2 and look at the results. You will notice coverage was automatically run and there is numerous red(uncovered) blocks of code</p>
+</li>
+<li><p class="first">Create additional test cases and functions to get 100% coverage on the provided source code.</p>
+</li>
+<li><p class="first">Now create a new function in a new source file that will take four values to determine if the object is a square or rectangle</p>
+</li>
+<li><p class="first">Create additional tests to completely cover the new function</p>
+</li>
+<li><p class="first">Create .gitignore exceptions for the coverage output folder and .coverage file (binary output from coverage run)</p>
+</li>
+</ol>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Bonus 15 points for anyone who modifies the function just created to also accept angles and determine if the object
+is a rhombus or disconnected object.</p>
+</div>
+</div>
+</div>
+<div class="section" id="getting-to-know-sphinx">
+<h1>Getting to know Sphinx</h1>
+<p>Sphinx documentation utilizes in line documentation (function comments see get_triangle_type for example) and
+ReStructured Text to create end user documentation. This allows the code changes to automatically be updated in
+the resulting code.</p>
+<p>I've included a template for documenting the source1.py file in the doc folder. This can be built using the following</p>
+<pre class="code literal-block">
+cd doc
+make html
+</pre>
+<p>This will create an index.html in build/html. View this file to get an idea of what this looks like.</p>
+<p>** Now build a rst doc for the source file for four sided objects that was created earlier **</p>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Don't forget to add your new rst file to the index to make it accessible</p>
+</div>
+<div class="section" id="creating-doctests">
+<h2>Creating DocTests</h2>
+<p>Sphinx doctests are useful in that they allow you to embedded checks in code or RST files that checks that changes
+to the code are updated in the associated documentation. Imagine the case where you have some defined API but then
+you change some of the parameters. If the associated documentation is not updated you'll have a very unhappy customer.</p>
+<p>This is where doctests come into play. Doctests provide a check and doctests also get printed to the html output.
+There are two ways to include doc tests</p>
+<div class="section" id="simple-doctests">
+<h3>Simple doctests</h3>
+<p>The simplest method of including a doctest is using the &quot;&gt;&gt;&gt;&quot; operator. For example:</p>
+<pre class="code literal-block">
+&gt;&gt;&gt; x = 1
+&gt;&gt;&gt; y = 2
+&gt;&gt;&gt; print x + y
+3
+</pre>
+<p>In the above example the code will be displayed exactly how it is included in the comment or RST.</p>
+</div>
+<div class="section" id="complex-doctests">
+<h3>Complex doctests</h3>
+<p>Complex doc tests split up tests into 3 - 4 different groups.
+* Test setups: provide a set of code to execute before the test specified (does not show up in html)
+* Test code: The actual test that gets executed (shows up in HTML)
+* Test output: The expected output from executing the test code (shows up in HTML)
+* Test cleanup: Steps to take after a test to cleanup after the test (does not show up in html)</p>
+<p>Example:</p>
+<pre class="code literal-block">
+.. testsetup:: *
+
+    x = 1
+    y = 2
+
+.. testcode:: addition
+
+    print x + y
+
+.. testoutput:: addition
+
+    3
+</pre>
+<p>In the above example by indicating '*' for the test setup we are indicating that this setup should be performed for
+every testcode block in the file. If we changes that to 'addition' the test setup will only be performed
+prior to for the addition testcode.</p>
+</div>
+<div class="section" id="executing-doctests">
+<h3>Executing doctests</h3>
+<p>By using the same make as building the html doc above we can execute doctests by running:</p>
+<pre class="code literal-block">
+make doctest
+</pre>
+<p>** Now create doctests for using both simple and complex doctests. **</p>
+</div>
+</div>
+</div>
+<div class="section" id="continuous-integration">
+<h1>Continuous Integration</h1>
+<p>Since testing that has only been executed on a single computer can fail to reveal flaws in both the source code
+and the tests. Tests and results which are not consistent and reproducible are useful. Plus how will we be able to
+detect the next time that Gaben breaks the build again?</p>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="http://drone.io">Drone.IO</a></li>
+<li>Register Drone IO with your github account.</li>
+<li>Connect Drone to build your nose2 and doctests.</li>
+<li>Setup drone to build the nose2 and doctests the same way you built them locally.</li>
+</ol>
+<ul class="simple">
+<li>You will want to make sure this will build each branch. This means drone will build each of your builds</li>
+<li>This is a good way to make sure that your tests will work on my computer</li>
+<li>This also ensures that your requirements.txt is correct</li>
+</ul>
+</div>
+<div class="section" id="lab-write-up">
+<h1>Lab Write-up</h1>
+<dl class="docutils">
+<dt>Each of the following questions must be copied to your lab write-up and made into section headers. Any code responses</dt>
+<dd>must utilize rst code block format. Likewise bullet and number lists must follow the same syntax.</dd>
+</dl>
+<ol class="arabic simple">
+<li>What was the hardest part of this lab?</li>
+<li>During the course of this lab, why did we exclude .pyc files?</li>
+<li>Name three files which would likely need to have a gitignore added?</li>
+<li>What is a pyunit TestCase?</li>
+<li>What is the difference between a git cherry pick and a rebase?</li>
+<li>How could you use git to print out just the author name of a given file for the current version of the repo?</li>
+<li>During this lab did you explore Tortoise Git or GIT Extensions? If not take a look at them, they probably would be useful for the remainder of the class</li>
+<li>Did you find the second issue in get_triangle_type? Did you choose to test the code as is or fix the code in get_triangle_type</li>
+</ol>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please ensure all your work is committed and pushed to your Lab 1 branch. Now submit the assignment through blackboard and include repo and
+drone.io job URLs. Looking on github is a good way to check that I will be able to see all your work.</p>
+</div>
+</div>
+<div class="system-messages section">
+<h1>Docutils System Messages</h1>
+<div class="system-message" id="id1">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">Lab1.rst</tt>, line 291); <em><a href="#id2">backlink</a></em></p>
+Unknown target name: &quot;test&quot;.</div>
+<div class="system-message" id="id3">
+<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">Lab1.rst</tt>, line 291); <em><a href="#id4">backlink</a></em></p>
+Unknown target name: &quot;test&quot;.</div>
+</div>
+</div>
+</body>
+</html>
