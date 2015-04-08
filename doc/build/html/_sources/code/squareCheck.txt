@@ -1,0 +1,25 @@
+rst doc for squareCheck (modified for example)
+==============
+
+squareCheck provides functions for describing a square or rectangle.
+
+Determining rectangle Type
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The function :func:`source.squareCheck.get_rectangle_type` provides users with a way to provide a set of four sides
+of a rectangle and returns the type of rectangle ("rectangle", "square" or "invalid")
+
+Square Example
+^^^^^^^^^^^^^^^
+
+>>> from source.squareCheck import get_rectangle_type
+>>> get_rectangle_type(1, 1, 1, 1)
+'square'
+
+
+
+Module Reference
+^^^^^^^^^^^^^^^^
+
+.. automodule:: source.squareCheck
+    :members:
