@@ -1,0 +1,34 @@
+"""
+Radar
+"""
+
+import logging
+from source.orc import orc
+
+logger = logging.getLogger(__name__)
+
+class radar(object):
+    """
+    radar Class
+    """
+    def __init__(self, maxOrcs=25):
+        self.maxOrcs = maxOrcs
+        self.numOrcs = 0
+        self.orcList = [orc]
+        logger.info('Radar created!')
+
+    def addOrc(self, orc=None):
+        self.numOrcs = self.numOrcs +1
+        self.orcList.append(orc)
+        #self.orcList[self.numOrcs] = orc
+        logger.info('Orc added to battlefield!')
+
+    def distance(self, name):
+        retVal = None
+        logger.debug('calculating distance')
+        for orc in self.orcList:
+            if name in orc.name:
+                retVal = ( (500 - orc.locx) + (500 - orc.locy) )
+                break
+        #retVal = ( (500 - self.orcList[1].locx) + (500 - self.orcList[1].locy) )
+        return retVal
