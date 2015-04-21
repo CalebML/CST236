@@ -15,7 +15,7 @@ class TestORC(TestCase):
         self.assertEqual(self.obj.name, 'Krusk')
 
     def test__init__all_passed(self):
-        orc2 = orc(name='UG', locx=1000, locy=42, speed=2)
+        orc2 = orc(name='UG', locx=1000, locy=42, speed=2, orcType='Berserker', priority=5)
         self.assertEqual(orc2.name, 'UG')
 
     def test_name_length_long(self):
@@ -46,4 +46,18 @@ class TestORC(TestCase):
         orc2 = orc(speed=-1)
         self.assertEqual(orc2.speed, 0)
 
-    
+    def test_priority_low(self):
+        orc2 = orc(priority=-1)
+        self.assertEqual(orc2.priority, 0)
+
+    def test_priority_high(self):
+        orc2 = orc(priority=11)
+        self.assertEqual(orc2.priority, 10)
+
+    def test_orcType(self):
+        orc2 = orc(orcType='General')
+        self.assertEqual(orc2.orcType, 'General')
+
+    def test_orcType_bad_val(self):
+        orc2 = orc(orcType='BadVal')
+        self.assertEqual(orc2.orcType, 'Scout')
