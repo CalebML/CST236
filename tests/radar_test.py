@@ -102,12 +102,33 @@ class TestRadar(TestCase):
         retVal = self.obj.command('l', 'General')
         self.assertEqual(len(retVal), 0)
 
+    def test_look_at_1_orc(self):
+        retVal = self.obj.command('l', 'Krusk')
+        self.assertEqual(retVal.name, 'Krusk')
 
+    def test_look_at_1_orc_not_found(self):
+        self.obj.killOrc('Krusk')
+        retVal = self.obj.command('l', 'Krusk')
+        self.assertEqual(retVal, None)
+    
+    def test_ENTer_the_trees(self):
+        orc2 = orc(name='UG', orcType='Scout')
+        self.obj.addOrc(orc2)
+        orc3 = orc(name='Urag', orcType='War Chief')
+        self.obj.addOrc(orc3)
+        orc4 = orc(name='Orbkh', orcType='General')
+        self.obj.addOrc(orc4)
+        self.obj.command('ENTer the trees')
+        retVal = self.obj.command('l')
+        self.assertEqual(len(retVal), 0)
 
-
-
-
-
+    def test_generate_orcs(self):
+        self.obj.genOrcs()
+        self.obj.genOrcs()
+        self.obj.genOrcs()
+        retVal = self.obj.command('l')
+        self.assertEqual(len(retVal), 4)
+        
 
 
 

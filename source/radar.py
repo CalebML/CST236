@@ -5,10 +5,13 @@ Radar
 import logging
 from source.orc import orc
 from source.orc import orcTypeList
+from random import randint
 
 logger = logging.getLogger(__name__)
 
 unitList = ['yards', 'meters', 'parsecs']
+orcNameList = ['Krusk', 'UG', 'Urag', 'Orbkh', 'Bagamul',
+               'Urlgan', 'Snaga', 'Snotrot', 'Grum', 'Daka']
 
 class radar(object):
     """
@@ -37,6 +40,7 @@ class radar(object):
             if name in orc.name:
                 self.orcList.remove(orc)
                 self.numOrcs = self.numOrcs -1
+                logger.info('Orc ' + orc.name + ' has been killed')
                 break
 
     def distance(self, name):
@@ -75,6 +79,19 @@ class radar(object):
                 break
         return retVal
 
+    def genOrcs(self):
+        if(len(orcNameList)>0):
+            orcNamePos = randint(0,(len(orcNameList)-1))
+            self.addOrc(orc(name=orcNameList[orcNamePos],
+                            locx=randint(1,1000),
+                            locy=randint(1,1000),
+                            speed=randint(1,10),
+                            orcType=orcTypeList[randint(0,7)],
+                            priority=randint(0,10)))
+            orcNameList.pop(orcNamePos)
+        else:
+            logger.error('Out of random orc names')
+
     def command(self, command='?', val=None):
         retVal = None
         if (command == 'x') or (command == 'X'):
@@ -98,6 +115,15 @@ class radar(object):
                     if orc.orcType == val:
                         retList.append(orc)
                 retVal = retList;
+            else:
+                for orc in self.orcList:
+                    if val in orc.name:
+                        retVal = orc
+
+        elif (command == 'ENTer the trees'):
+            del self.orcList[:]
+            self.numOrcs = 0
+            logger.info('All Orcs have been killed')
         
         elif (command == '?'):
             retVal = """? - pull up this message
