@@ -4,7 +4,7 @@ Test for pyTona
 import getpass
 import datetime
 from pyTona.main import Interface
-from ReqTracer import requirements
+from ReqTracer import requirements#, Requirements
 from unittest import TestCase
 
 
@@ -47,7 +47,7 @@ class testInterface(TestCase):
         """
 
     #Determining Answers reqs
-
+    
     @requirements(['#0001', '#0003'])
     def test_no_valid_keyword(self):
         answer = self.obj.ask('are you okay' + chr(0x3E) )
@@ -62,7 +62,7 @@ class testInterface(TestCase):
     def test_pass_number_to_func(self):
         answer = self.obj.ask('What is 10560 feet in miles' + chr(0x3E) )
         self.assertEqual(answer, '2.0')
-
+        
     #Providing Answers reqs
 
     @requirements(['#0001', '#0002', '#0005', '#0006', '#0008', '#0010', '#0011'])
@@ -126,7 +126,7 @@ class testInterface(TestCase):
         self.assertEqual(answer, 'Guido Rossum(BFDL)' )
 
     @requirements(['#0001', '#0002', '#0008', '#0020'])
-    def test_who_invented_python_question(self):
+    def test_why_dont_you_understand_question(self):
         answer = self.obj.ask('Why don\'t you understand me' + chr(0x3E) )
         self.assertEqual(answer, 'Because you do not speak 1s and 0s' )
 
