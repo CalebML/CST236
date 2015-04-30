@@ -3,6 +3,9 @@ Test for pyTona
 """
 import getpass
 import datetime
+import socket
+import subprocess
+import threading
 from pyTona.main import Interface
 from ReqTracer import requirements#, Requirements
 from unittest import TestCase
@@ -159,8 +162,8 @@ class testInterface(TestCase):
 
     @requirements(['#0028'])
     def test_get_fib_number(self):
-        answer = self.obj.ask('What is the 3 digit of the Fibonacci sequence?')
-        self.assertEqual(answer, 2)
+        answer = self.obj.ask('What is the 2 digit of the Fibonacci sequence?')
+        self.assertEqual(answer, 1)
 
     @requirements(['#0029'])
     def test_fib_thinking(self):
@@ -183,12 +186,12 @@ class testInterface(TestCase):
                 coolYourJets +=1
             count +=1
         
-        self.assertTrue( (thinking < 50) &
-                         (thinking > 30) &
-                         (oneSecond < 40) &
-                         (oneSecond > 20) &
-                         (coolYourJets < 20) &
-                         (coolYourJets > 0) )
+        self.assertTrue( (thinking < 47) &
+                         (thinking > 26) &
+                         (oneSecond < 38) &
+                         (oneSecond > 17) &
+                         (coolYourJets < 47) &
+                         (coolYourJets > 26) )
 
 
 
