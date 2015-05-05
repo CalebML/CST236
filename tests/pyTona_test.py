@@ -7,14 +7,24 @@ import socket
 import subprocess
 import threading
 from pyTona.main import Interface
-from ReqTracer import requirements#, Requirements
+from ReqTracer import requirements
+from pyTona.answer_funcs import FibSeqFinder, seq_finder
 from unittest import TestCase
+from mock import Mock
+from mock import MagicMock
+from mock import patch
 
 
 class testInterface(TestCase):
     def setUp(self):
         self.obj = Interface()
-
+        
+    
+    def tearDown(self):
+        if seq_finder is not None:
+            seq_finder.stop()
+    
+    
     def test__init__(self):
         self.assertEqual(self.obj.last_question, None)
 
@@ -127,7 +137,7 @@ class testInterface(TestCase):
     @requirements(['#0001', '#0002', '#0008', '#0019'])
     def test_who_invented_python_question(self):
         answer = self.obj.ask('Who invented Python' + chr(0x3F) )
-        self.assertEqual(answer, 'Guido Rossum(BFDL)' )
+        self.assertEqual(answer, 'Guido Rossum(BDFL)' )
 
     @requirements(['#0001', '#0002', '#0008', '#0020'])
     def test_why_dont_you_understand_question(self):
@@ -155,18 +165,20 @@ class testInterface(TestCase):
         try:
             process = subprocess.Popen(['git', 'config', '--get', 'remote.origin.url'], stdout=subprocess.PIPE)
             output = process.communicate()[0]
+            val = output.strip()
         except:
             val = 'Unknown'
         answer = self.obj.ask('Where are you?')
         self.assertEqual(answer, val)
-
+    
     @requirements(['#0028'])
-    def test_get_fib_number(self):
+    def test_get_fib_number(self):        
         answer = self.obj.ask('What is the 2 digit of the Fibonacci sequence?')
         self.assertEqual(answer, 1)
-
+        
+    
     @requirements(['#0029'])
-    def test_fib_thinking(self):
+    def test_fib_thinking(self):        
         count = 100
         answer = []
         while(count > 0):    #call it 100 times
@@ -192,7 +204,24 @@ class testInterface(TestCase):
                          (oneSecond > 17) &
                          (coolYourJets < 47) &
                          (coolYourJets > 26) )
+    
+    @requirements(['#0024', '#0025', '#0026'])
+    def test_get_users(self):        
+        with patch.object(socket, 'socket') as mock_s:
+            mock_s.return_value.connect.return_value = True
+            mock_s.return_value.recv.return_value = 'user1$user2'
+            answer = self.obj.ask('Who else is here?')
+        
+        self.assertEqual(answer, ['user1', 'user2'])
 
+    @requirements(['#0027'])
+    def test_no_connection_to_server(self):        
+        with patch.object(socket.socket, 'connect') as mock_s:
+            #mock_s.return_value.connect.return_value = False
+            #mock_s.return_value.recv.return_value = ''
+            answer = self.obj.ask('Who else is here?')
+        
+        self.assertEqual(answer, 'IT\'S A TRAAAPPPP')
 
 
 
