@@ -8,7 +8,7 @@ import subprocess
 import threading
 from pyTona.main import Interface
 from ReqTracer import requirements
-from pyTona.answer_funcs import FibSeqFinder, seq_finder
+import pyTona.answer_funcs
 from unittest import TestCase
 from mock import Mock
 from mock import MagicMock
@@ -21,8 +21,8 @@ class testInterface(TestCase):
         
     
     def tearDown(self):
-        if seq_finder is not None:
-            seq_finder.stop()
+        if pyTona.answer_funcs.seq_finder is not None:
+            pyTona.answer_funcs.seq_finder.stop()
     
     
     def test__init__(self):
