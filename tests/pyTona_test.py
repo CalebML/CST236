@@ -197,7 +197,9 @@ class testInterface(TestCase):
             elif(answer[count] == 'cool your jets'):
                 coolYourJets +=1
             count +=1
-        
+            print thinking
+            print oneSecond
+            print coolYourJets
         self.assertTrue( (thinking < 70) &
                          (thinking > 50) &
                          (oneSecond < 40) &
