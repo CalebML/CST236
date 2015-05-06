@@ -197,15 +197,15 @@ class testInterface(TestCase):
             elif(answer[count] == 'cool your jets'):
                 coolYourJets +=1
             count +=1
-            print thinking
-            print oneSecond
-            print coolYourJets
-        self.assertTrue( (thinking < 70) &
-                         (thinking > 50) &
-                         (oneSecond < 40) &
-                         (oneSecond > 20) &
-                         (coolYourJets < 20) &
-                         (coolYourJets > 0) )
+        print thinking
+        print oneSecond
+        print coolYourJets
+        self.assertTrue( (thinking <= 75) &
+                         (thinking >= 45) &
+                         (oneSecond <= 45) &
+                         (oneSecond >= 15) &
+                         (coolYourJets <= 25) &
+                         (coolYourJets >= 0) )
     
     @requirements(['#0024', '#0025', '#0026'])
     def test_get_users(self):        
