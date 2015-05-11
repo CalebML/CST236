@@ -89,7 +89,10 @@ def get_fibonacci_seq(index):
         return seq_finder.sequence[index]
 
 def get_hdd_access_time():
-    file = open('testFile.txt', 'r+')
+    fileW = open('testFile.txt', 'w')
+    fileW.writelines('This is a test File!')
+    fileW.close()
+    file = open('testFile.txt', 'r')
     t0 = time.clock()
     print file.read()
     t1 = time.clock() - t0
