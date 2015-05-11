@@ -63,7 +63,7 @@ class FibSeqFinder(threading.Thread):
 
     def run(self):
         self.num_indexes = 0
-        while not self._stop.isSet() and self.num_indexes <= 1000:
+        while not self._stop.isSet() and self.num_indexes < 1000:
             self.sequence.append(self.sequence[-1] + self.sequence[-2])
             self.num_indexes += 1
             time.sleep(.04)
@@ -78,9 +78,9 @@ def get_fibonacci_seq(index):
 
     if index > seq_finder.num_indexes:
         value = random.randint(0, 9)
-        if value > 4:
+        if value >= 4:
             return "Thinking..."
-        elif value >= 1:
+        elif value > 1:
             return "One second"
         else:
             return "cool your jets"

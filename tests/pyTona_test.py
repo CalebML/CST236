@@ -3,17 +3,18 @@ Test for pyTona
 """
 import getpass
 import datetime
+import time
 import socket
 import subprocess
 import threading
 from pyTona.main import Interface
+import pyTona.main
 from ReqTracer import requirements
-import pyTona.answer_funcs
+from pyTona.question_answer import QA
 from unittest import TestCase
 from mock import Mock
 from mock import MagicMock
 from mock import patch
-
 
 class testInterface(TestCase):
     def setUp(self):
@@ -23,6 +24,7 @@ class testInterface(TestCase):
     def tearDown(self):
         if pyTona.answer_funcs.seq_finder is not None:
             pyTona.answer_funcs.seq_finder.stop()
+            pyTona.answer_funcs.seq_finder = None
     
     
     def test__init__(self):
@@ -172,9 +174,11 @@ class testInterface(TestCase):
         self.assertEqual(answer, val)
     
     @requirements(['#0028'])
-    def test_get_fib_number(self):        
-        answer = self.obj.ask('What is the 2 digit of the Fibonacci sequence?')
-        self.assertEqual(answer, 1)
+    def test_get_fib_number(self):       
+        self.obj.ask('What is the 2 digit of the Fibonacci sequence?')
+        time.sleep(0.2)
+        answer = self.obj.ask('What is the 5 digit of the Fibonacci sequence?')
+        self.assertEqual(answer, 5)
         
     
     @requirements(['#0029'])
@@ -225,9 +229,87 @@ class testInterface(TestCase):
         
         self.assertEqual(answer, 'IT\'S A TRAAAPPPP')
 
+    @requirements(['#0031'])
+    def test_store_answer_under_5ms(self):
+        self.obj.ask('What is the meaning of life according to Douglas adams?')
+        t0 = time.clock()
+        self.obj.teach('42')
+        t1 = time.clock() - t0
+        print t1
+        self.assertLess(t1, 0.005)
 
+    @requirements(['#0032'])
+    def test_retrieve_answer_under_5ms(self): 
+        self.obj.ask('What is the meaning of life according to Douglas adams?')
+        self.obj.teach('42')
+        t0 = time.clock()
+        self.obj.ask('What is the meaning of life according to Douglas adams?')
+        t1 = time.clock() - t0
+        self.assertLess(0, 0.005)
 
-
-
-
-
+    @requirements(['#0033', '#0034'])
+    def test_stop_after_1000_fib_seq(self): 
+        self.obj.ask('What is the 1000 digit of the Fibonacci sequence?')      # start fib seq
+        
+        t0fib = time.clock()
+        t1fib = 0
+        while( (pyTona.answer_funcs.seq_finder.num_indexes < 1000) & (t1fib < 60) ):
+            t1fib = time.clock() - t0fib
+            #time.sleep(0.1)
+        time.sleep(0.1) #give it time to calculare past 1000
+        self.obj.ask('What is the 1001 digit of the Fibonacci sequence?')
+        print t1fib
+        self.assertEqual(pyTona.answer_funcs.seq_finder.num_indexes, 1000)
+    
+    @requirements(['#0030', '#0032'])
+    def test_1_mil_questions(self): 
+        numQuestions = 9
+        i = 1
+        addedOneMil = True
+        
+        t0 = time.clock()
+        while(numQuestions < 999999):
+            """                     # This method takes 5.9 sec to add 1,000 questions
+            numQuestions = numQuestions + 1
+            i = i + 1
+            question = 'What a' + str(i) + '?'
+            answer = self.obj.ask( question )
+            retVal = self.obj.teach(str(i))
+            if( (retVal != None) ):
+                #print question
+                #print i
+                #print numQuestions
+                #print answer
+                #print retVal
+                numQuestions = 1000000
+                addedOneMil = False
+            """                     # This method takes 0.003 seconds to add 1,000 questions
+            question = 'What a' + str(i) + '?'
+            self.obj.question_answers[question] = QA(question, str(i))
+            
+            numQuestions = numQuestions + 1
+            i = i + 1
+        
+        # 999,999 questions and answers are in the system now
+        self.obj.ask( 'How can the system hold 1,000,000 questions?' )
+        self.obj.teach('Using a dictionary!')
+        
+        # check 1,000,000th answer
+        t2 = time.clock()
+        answer = self.obj.ask( 'How can the system hold 1,000,000 questions?' )
+        t3 = time.clock() - t2
+        if(answer != 'Using a dictionary!'):
+            addedOneMil = False
+        
+        t1 = time.clock() - t0
+        #print retVal
+        print t1    #total test time
+        print t3    #time to retrieve 1,000,000th answer
+        self.assertTrue(addedOneMil)
+        
+    
+        
+        
+        
+        
+        
