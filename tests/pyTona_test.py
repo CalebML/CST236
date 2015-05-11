@@ -251,7 +251,7 @@ class testInterface(TestCase):
         self.obj.ask('What is the meaning of life according to Douglas adams?')
         t1 = time.clock() - t0
         self.assertLess(t1, 0.005)
-    """
+    
     @requirements(['#0033', '#0034'])
     def test_stop_after_1000_fib_seq(self): 
         self.obj.ask('What is the 1000 digit of the Fibonacci sequence?')      # start fib seq
@@ -274,7 +274,7 @@ class testInterface(TestCase):
         
         t0 = time.clock()
         while(numQuestions < 999999):
-            """    """                 # This method takes 5.9 sec to add 1,000 questions
+            """                     # This method takes 5.9 sec to add 1,000 questions
             numQuestions = numQuestions + 1
             i = i + 1
             question = 'What a' + str(i) + '?'
@@ -288,7 +288,7 @@ class testInterface(TestCase):
                 #print retVal
                 numQuestions = 1000000
                 addedOneMil = False
-            """    """                 # This method takes 0.003 seconds to add 1,000 questions
+            """                   # This method takes 0.003 seconds to add 1,000 questions
             question = 'What a' + str(i) + '?'
             self.obj.question_answers[question] = QA(question, str(i))
             
@@ -311,7 +311,7 @@ class testInterface(TestCase):
         print t1    #total test time
         print t3    #time to retrieve 1,000,000th answer
         self.assertTrue(addedOneMil)
-    """
+    
 
     @requirements(['#0035'])
     def test_get_hdd_access_time(self):
