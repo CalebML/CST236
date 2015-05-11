@@ -15,6 +15,7 @@ from unittest import TestCase
 from mock import Mock
 from mock import MagicMock
 from mock import patch
+#from pyTona.answer_funcs import get_hdd_access_time
 
 class testInterface(TestCase):
     def setUp(self):
@@ -25,6 +26,10 @@ class testInterface(TestCase):
         if pyTona.answer_funcs.seq_finder is not None:
             pyTona.answer_funcs.seq_finder.stop()
             pyTona.answer_funcs.seq_finder = None
+            
+        if pyTona.answer_funcs.prime_finder is not None:
+            pyTona.answer_funcs.prime_finder.stop()
+            pyTona.answer_funcs.prime_finder = None
     
     
     def test__init__(self):
@@ -245,8 +250,8 @@ class testInterface(TestCase):
         t0 = time.clock()
         self.obj.ask('What is the meaning of life according to Douglas adams?')
         t1 = time.clock() - t0
-        self.assertLess(0, 0.005)
-
+        self.assertLess(t1, 0.005)
+    """
     @requirements(['#0033', '#0034'])
     def test_stop_after_1000_fib_seq(self): 
         self.obj.ask('What is the 1000 digit of the Fibonacci sequence?')      # start fib seq
@@ -269,7 +274,7 @@ class testInterface(TestCase):
         
         t0 = time.clock()
         while(numQuestions < 999999):
-            """                     # This method takes 5.9 sec to add 1,000 questions
+            """    """                 # This method takes 5.9 sec to add 1,000 questions
             numQuestions = numQuestions + 1
             i = i + 1
             question = 'What a' + str(i) + '?'
@@ -283,7 +288,7 @@ class testInterface(TestCase):
                 #print retVal
                 numQuestions = 1000000
                 addedOneMil = False
-            """                     # This method takes 0.003 seconds to add 1,000 questions
+            """    """                 # This method takes 0.003 seconds to add 1,000 questions
             question = 'What a' + str(i) + '?'
             self.obj.question_answers[question] = QA(question, str(i))
             
@@ -306,10 +311,20 @@ class testInterface(TestCase):
         print t1    #total test time
         print t3    #time to retrieve 1,000,000th answer
         self.assertTrue(addedOneMil)
+    """
+
+    @requirements(['#0035'])
+    def test_get_hdd_access_time(self):
+        answer = self.obj.ask('What is the hard drive access time?')
+        print answer
+        self.assertLess(answer, 0.010)
         
-    
-        
-        
-        
+    @requirements(['#0035'])
+    def test_find_prime(self):
+        answer = self.obj.ask('What is the 5 prime number?')
+        print answer
+        time.sleep(.01)
+        answer = self.obj.ask('What is the 5 prime number?')
+        self.assertEqual(answer, 11)
         
         

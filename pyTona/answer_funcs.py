@@ -6,6 +6,7 @@ import threading
 import time
 
 seq_finder = None
+prime_finder = None
 
 def feet_to_miles(feet):
     return "{0} miles".format(float(feet) / 5280)
@@ -63,7 +64,7 @@ class FibSeqFinder(threading.Thread):
 
     def run(self):
         self.num_indexes = 0
-        while not self._stop.isSet() and self.num_indexes < 1000:
+        while not self._stop.isSet() and self.num_indexes <= 1000:
             self.sequence.append(self.sequence[-1] + self.sequence[-2])
             self.num_indexes += 1
             time.sleep(.04)
@@ -86,3 +87,61 @@ def get_fibonacci_seq(index):
             return "cool your jets"
     else:
         return seq_finder.sequence[index]
+
+def get_hdd_access_time():
+    file = open('testFile.txt', 'r')
+    t0 = time.clock()
+    print file.read()
+    t1 = time.clock() - t0
+    print t1
+    file.seek(0)
+    #file.cache_clear()
+    t0 = time.clock()
+    print file.read()
+    t2 = time.clock() - t0
+    print t2        #make sure t2<t1
+                    #should NOT use cache for finding t1
+    return t1
+
+class PrimeFinder(threading.Thread):
+    def __init__(self, *args, **kwargs):
+        super(PrimeFinder, self).__init__(*args, **kwargs)
+        self.primes = [2]
+        self._stop = threading.Event()
+        self.num_indexes = 1
+        self.current = 3
+        self.check = 1
+        self.divisors = 0
+
+    def stop(self):
+        self._stop.set()
+
+    def run(self):
+        self.num_indexes = 0
+        while not self._stop.isSet() and self.num_indexes <= 100:
+            
+            while((self.check < self.current) & (self.divisors < 2)):
+                if(self.current%self.check == 0):
+                    self.divisors += 1
+                self.check += 2
+
+            if((self.check == self.current) & (self.divisors == 1)):
+                self.primes.append(self.current)
+                self.num_indexes += 1
+            self.current += 2
+            self.check = 1
+            self.divisors = 0
+
+def get_prime_num(index):
+    index = int(index-1)
+    global prime_finder
+    if prime_finder is None:
+        
+        prime_finder = PrimeFinder()
+        prime_finder.start()
+
+    if index > prime_finder.num_indexes:
+        return "Thinking..."
+    else:
+        return prime_finder.primes[index]
+
