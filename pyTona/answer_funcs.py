@@ -144,7 +144,7 @@ def get_prime_num(index):
         prime_finder.start()
 
     if index > prime_finder.num_indexes:
-        return "Thinking..."
+        return "Calculating..."
     else:
         return prime_finder.primes[index]
 
