@@ -82,3 +82,9 @@ Username shall be determined by the name of the currently logged in user.
 
 #0035 The system shall access and read the hard drive in under 10mS
 
+#0036 The system shall find prime numbers when asked "What is the __ prime number"
+
+#0037 The system shall find the xth digit of pi when asked "What is the x number of pi"
+
+#0038 The system shall respond to "How much money will i have if i invest x dollars at 2% for ten years" with the answer using compound interest
+

@@ -4,9 +4,12 @@ import socket
 import subprocess
 import threading
 import time
+from math import pi
 
 seq_finder = None
 prime_finder = None
+pi_finder = None
+interest_finder = None
 
 def feet_to_miles(feet):
     return "{0} miles".format(float(feet) / 5280)
@@ -148,3 +151,72 @@ def get_prime_num(index):
     else:
         return prime_finder.primes[index]
 
+class PiFinder(threading.Thread):
+    def __init__(self, *args, **kwargs):
+        super(PiFinder, self).__init__(*args, **kwargs)
+        self.pi = [3]
+        self._stop = threading.Event()
+        self.num_indexes = 0
+        self.pi_float = pi
+
+    def stop(self):
+        self._stop.set()
+
+    def run(self):
+        self.num_indexes = 0
+        while not self._stop.isSet() and self.num_indexes <= 100:
+            #find pi digits here
+            self.pi_float = self.pi_float - int(self.pi_float)
+            self.pi_float *= 10.0
+            pi_int = int(self.pi_float)
+            #pi_int = pi_int % 10
+            self.pi.append( pi_int )
+            #self.pi.append( (int(pi*(10^self.num_indexes)))%10 )
+            self.num_indexes += 1
+                
+def get_pi_num(index):
+    index = int(index-1)
+    global pi_finder
+    if pi_finder is None:
+        pi_finder = PiFinder()
+        pi_finder.start()
+
+    if index > pi_finder.num_indexes:
+        return "Calculating..."
+    else:
+        return pi_finder.pi[index]
+
+class InterestFinder(threading.Thread):
+    def __init__(self, *args, **kwargs):
+        super(InterestFinder, self).__init__(*args, **kwargs)
+        self._stop = threading.Event()
+        self.found = False
+        self.money = 0
+
+    def get_dollars(self, dollars):
+        self.starting_dollars = dollars
+
+    def stop(self):
+        self._stop.set()
+
+    def run(self):
+        self.num_indexes = 0
+        while not self._stop.isSet():
+            time.sleep(.05)
+            self.money = 1.219*self.starting_dollars
+            self.found = True
+            self._stop.set()
+
+def get_2pct_interest_10_yrs(dollars):
+    dollars = int(dollars)
+    global interest_finder
+    if interest_finder is None:
+        interest_finder = InterestFinder()
+        interest_finder.get_dollars(dollars)
+        interest_finder.start()
+
+    if not interest_finder.found:
+        return "Calculating..."
+    else:
+        return interest_finder.money
+    

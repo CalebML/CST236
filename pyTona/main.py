@@ -1,5 +1,5 @@
 from pyTona.question_answer import QA
-from pyTona.answer_funcs import feet_to_miles, hal_20, get_git_branch, get_git_url, get_other_users, get_fibonacci_seq, get_hdd_access_time, get_prime_num
+from pyTona.answer_funcs import feet_to_miles, hal_20, get_git_branch, get_git_url, get_other_users, get_fibonacci_seq, get_hdd_access_time, get_prime_num, get_pi_num, get_2pct_interest_10_yrs
 
 import difflib
 NOT_A_QUESTION_RETURN = "Was that a question?"
@@ -29,7 +29,11 @@ class Interface(object):
             'Who else is here': QA('Who else is here', get_other_users),
             'What is the digit of the Fibonacci sequence': QA('What is the digit of the Fibonacci sequence', get_fibonacci_seq),
             'What is the hard drive access time': QA('What is the hard drive access time', get_hdd_access_time),
-            'What is the prime number': QA('What is the prime number', get_prime_num)
+            'What is the prime number': QA('What is the prime number', get_prime_num),
+            'What is the number of pi': QA('What is the number of pi', get_pi_num),
+            'How much money will i have if i invest dollars at 2% for ten years': QA('How much money will i have if i invest dollars at 2% for ten years', get_2pct_interest_10_yrs)
+
+
         }
         self.last_question = None
 
