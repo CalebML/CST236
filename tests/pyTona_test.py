@@ -354,7 +354,7 @@ class testInterface(TestCase):
         t0 = time.clock()
         answer = self.obj.ask('What is the 5 prime number?')
         print answer
-        time.sleep(.01)
+        time.sleep(.03)
         answer = self.obj.ask('What is the 100 prime number?')
         t1 = time.clock() - t0
         with open('test.csv', 'a') as fp:
