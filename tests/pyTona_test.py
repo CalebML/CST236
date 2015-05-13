@@ -15,6 +15,7 @@ from unittest import TestCase
 from mock import Mock
 from mock import MagicMock
 from mock import patch
+import csv
 #from pyTona.answer_funcs import get_hdd_access_time
 
 class testInterface(TestCase):
@@ -241,6 +242,10 @@ class testInterface(TestCase):
         self.obj.teach('42')
         t1 = time.clock() - t0
         print t1
+        with open('test.csv', 'a') as fp:
+            a = csv.writer(fp, delimiter=',')
+            data = ['test_store_answer_under_5ms time:', str(t1*1000) + ' mS']
+            a.writerow(data)
         self.assertLess(t1, 0.005)
 
     @requirements(['#0032'])
@@ -250,6 +255,10 @@ class testInterface(TestCase):
         t0 = time.clock()
         self.obj.ask('What is the meaning of life according to Douglas adams?')
         t1 = time.clock() - t0
+        with open('test.csv', 'a') as fp:
+            a = csv.writer(fp, delimiter=',')
+            data = ['test_retrieve_answer_under_5ms time:', str(t1*1000) + ' mS']
+            a.writerow(data)
         self.assertLess(t1, 0.005)
     
     @requirements(['#0033', '#0034'])
@@ -271,6 +280,7 @@ class testInterface(TestCase):
         numQuestions = 9
         i = 1
         addedOneMil = True
+        t3 = []
         
         t0 = time.clock()
         while(numQuestions < 999999):
@@ -288,9 +298,17 @@ class testInterface(TestCase):
                 #print retVal
                 numQuestions = 1000000
                 addedOneMil = False
-            """                  # This method takes 0.003 seconds to add 1,000 questions
+            """
             question = 'What a' + str(i) + '?'
-            self.obj.question_answers[question] = QA(question, str(i))
+            
+            if(numQuestions % 100000 == 0):
+                t2 = time.clock()
+                answer = self.obj.ask( question )
+                self.obj.teach(str(i))
+                t3.append(time.clock() - t2)
+            else:
+                # This method takes 0.003 seconds to add 1,000 questions
+                self.obj.question_answers[question] = QA(question, str(i))
             
             numQuestions = numQuestions + 1
             i = i + 1
@@ -302,14 +320,22 @@ class testInterface(TestCase):
         # check 1,000,000th answer
         t2 = time.clock()
         answer = self.obj.ask( 'How can the system hold 1,000,000 questions?' )
-        t3 = time.clock() - t2
+        t3.append(time.clock() - t2)
         if(answer != 'Using a dictionary!'):
             addedOneMil = False
         
         t1 = time.clock() - t0
         #print retVal
         print t1    #total test time
-        print t3    #time to retrieve 1,000,000th answer
+        print t3[-1]    #time to retrieve 1,000,000th answer
+        with open('test.csv', 'a') as fp:
+            a = csv.writer(fp, delimiter=',')
+            data = [['test_1_mil_questions times - Time to add (Sec):'],
+                    ['Question 100,000', 'Question 200,000', 'Question 300,000',
+                     'Question 400,000', 'Question 500,000', 'Question 600,000',
+                     'Question 700,000', 'Question 800,000', 'Question 800,000', 'Question 1,000,000', ],
+                    t3]
+            a.writerows(data)
         self.assertTrue(addedOneMil)
     
 
@@ -317,28 +343,59 @@ class testInterface(TestCase):
     def test_get_hdd_access_time(self):
         answer = self.obj.ask('What is the hard drive access time?')
         print answer
+        with open('test.csv', 'a') as fp:
+            a = csv.writer(fp, delimiter=',')
+            data = ['test_get_hdd_access_time time:', str(answer*1000) + ' mS']
+            a.writerow(data)
         self.assertLess(answer, 0.010)
         
     @requirements(['#0036'])
     def test_find_prime(self):
+        t0 = time.clock()
         answer = self.obj.ask('What is the 5 prime number?')
         print answer
         time.sleep(.01)
-        answer = self.obj.ask('What is the 5 prime number?')
-        self.assertEqual(answer, 11)
+        answer = self.obj.ask('What is the 100 prime number?')
+        t1 = time.clock() - t0
+        with open('test.csv', 'a') as fp:
+            a = csv.writer(fp, delimiter=',')
+            data = ['test_find_prime time:', str(t1*1000) + ' mS']
+            a.writerow(data)
+        if(answer != 541):
+            print 'answer = ' + str(answer)
+            self.assertFalse(True)
+        else:
+            self.assertLess(t1, 0.05)
         
     @requirements(['#0037'])
     def test_find_pi(self):
+        t0 = time.clock()
         answer = self.obj.ask('What is the 10 number of pi?')
         print answer
         time.sleep(.01)
-        answer = self.obj.ask('What is the 10 number of pi?')
-        self.assertEqual(answer, 3)
+        answer = self.obj.ask('What is the 100 number of pi?')
+        t1 = time.clock() - t0
+        if(answer != 0):
+            print 'answer = ' + str(answer)
+            self.assertFalse(True)
+        else:
+            self.assertLess(t1, 0.03)
 
     @requirements(['#0038'])
     def test_find_interest(self):
+        t0 = time.clock()
         answer = self.obj.ask('How much money will i have if i invest 1000 dollars at 2% for ten years?')
         print answer
-        time.sleep(.1)
+        time.sleep(.05)
         answer = self.obj.ask('How much money will i have if i invest 1000 dollars at 2% for ten years?')
-        self.assertEqual(answer, 1219.0)
+        t1 = time.clock() - t0
+        if(answer != 1219.0):
+            print 'answer = ' + str(answer)
+            self.assertFalse(True)
+        else:
+            self.assertLess(t1, 0.1)
+
+
+
+
+        
