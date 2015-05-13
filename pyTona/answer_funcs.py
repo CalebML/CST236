@@ -202,7 +202,7 @@ class InterestFinder(threading.Thread):
     def run(self):
         self.num_indexes = 0
         while not self._stop.isSet():
-            time.sleep(.05)
+            time.sleep(.001)
             self.money = 1.219*self.starting_dollars
             self.found = True
             self._stop.set()
