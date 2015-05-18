@@ -3,4 +3,6 @@ coverage
 mock
 sphinx
 docutils
+SendKeys
+pywinauto
 nose2-cov==1.0a4
